@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Master Computer Keyboard Shortcuts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.85);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.3);
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Stylized Key Look */
+        kbd {
+            background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+            border: 1px solid #475569;
+            box-shadow: 0 3px 0 0 #0f172a, inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #38bdf8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.5px;
+            margin: 2px;
+            transition: all 0.15s ease;
+        }
+
+        kbd:active, .kbd-pressed {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 0 #0f172a, inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+            background: #0284c7;
+            color: white;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Custom Glow Animations */
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            border-radius: 50%;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #0284c7 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden antialiased">
+
+    <div class="glow-effect -top-20 -left-20"></div>
+    <div class="glow-effect top-1/2 -right-20" style="background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(0,0,0,0) 70%);"></div>
+
+    <nav class="sticky top-0 z-40 glass-nav px-4 lg:px-8 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                <i class="fa-solid fa-keyboard text-white text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg leading-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Shortcut Vault</h1>
+                <p class="text-xs text-cyan-400 font-medium">100 Master Keyboard Shortcuts</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 md:gap-4">
+            <button id="practiceModeBtn" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-indigo-600/80 border border-slate-700 hover:border-indigo-500 text-xs sm:text-sm font-semibold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-gamepad text-indigo-400"></i>
+                <span>Practice Mode</span>
+            </button>
+            <button id="favoritesToggleBtn" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-amber-600/80 border border-slate-700 hover:border-amber-500 text-xs sm:text-sm font-semibold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-star text-amber-400"></i>
+                <span id="favCount">0 Bookmarks</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+        
+        <!-- Search and Quick Stats Header -->
+        <div class="mb-8">
+            <div class="text-center max-w-2xl mx-auto mb-6">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
+                    Master Every Key Combo
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Interactive directory of 100 essential shortcuts for Windows, Excel, Browsers & Editing.
+                </p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-xl mx-auto relative mb-6">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" placeholder="Search by shortcut (e.g. 'Ctrl + C') or action ('Copy')..." 
+                       class="w-full pl-11 pr-10 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all shadow-lg text-sm sm:text-base">
+                <button id="clearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Category Pills -->
+            <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm" id="categoryContainer">
+                <button class="tab-btn active px-4 py-2 rounded-lg border border-slate-700 text-slate-300 font-medium transition-all whitespace-nowrap" data-cat="all">
+                    All Shortcuts (<span id="countAll">100</span>)
+                </button>
+                <button class="tab-btn px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700/50 transition-all whitespace-nowrap" data-cat="basic">
+                    <i class="fa-solid fa-bolt mr-1.5 text-cyan-400"></i>Basic & Editing
+                </button>
+                <button class="tab-btn px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700/50 transition-all whitespace-nowrap" data-cat="formatting">
+                    <i class="fa-solid fa-font mr-1.5 text-purple-400"></i>Text & Formatting
+                </button>
+                <button class="tab-btn px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700/50 transition-all whitespace-nowrap" data-cat="excel">
+                    <i class="fa-solid fa-table-cells mr-1.5 text-emerald-400"></i>Excel & Grid
+                </button>
+                <button class="tab-btn px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700/50 transition-all whitespace-nowrap" data-cat="browser">
+                    <i class="fa-solid fa-globe mr-1.5 text-amber-400"></i>Browser & System
+                </button>
+            </div>
+        </div>
+
+        <div id="shortcutsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Cards populated dynamically via Javascript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="noResults" class="hidden text-center py-16">
+            <div class="w-16 h-16 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mx-auto mb-4 text-slate-500 text-2xl">
+                <i class="fa-solid fa-ghost"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-300">No shortcuts found</h3>
+            <p class="text-slate-500 text-sm mt-1">Try searching with a different key combination or description.</p>
+        </div>
+    </main>
+
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden transition-opacity duration-200">
+        <div class="glass-card max-w-lg w-full rounded-2xl p-6 relative border border-slate-700/80 shadow-2xl transform scale-95 transition-transform duration-200" id="modalContent">
+            <button id="closeModal" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-lg bg-slate-800/80 flex items-center justify-center border border-slate-700 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <span id="modalNum" class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">#1</span>
+                <span id="modalCategory" class="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 border border-slate-700">Category</span>
+            </div>
+
+            <h3 id="modalTitle" class="text-2xl font-bold text-white mb-2">Action Name</h3>
+            <p id="modalDesc" class="text-slate-300 text-sm mb-6 leading-relaxed">Detailed description will appear here.</p>
+
+            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 mb-6 flex flex-col items-center justify-center gap-2">
+                <span class="text-xs font-medium text-slate-400">KEYBOARD COMBINATION</span>
+                <div id="modalKeys" class="flex flex-wrap items-center justify-center gap-1.5 my-1">
+                    <!-- Dynamic KBD tags -->
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button id="modalCopyBtn" class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copy Combo</span>
+                </button>
+                <button id="modalFavBtn" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-star"></i>
+                    <span>Bookmark</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="practiceModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-card max-w-xl w-full rounded-2xl p-6 sm:p-8 relative border border-slate-700 shadow-2xl">
+            <button id="closePractice" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white">Shortcut Trainer</h3>
+                </div>
+                <div class="text-xs font-bold px-3 py-1 rounded-full bg-slate-800 text-cyan-400 border border-slate-700">
+                    Score: <span id="quizScore">0</span> / <span id="quizTotal">0</span>
+                </div>
+            </div>
+
+            <div class="text-center py-6">
+                <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">WHAT IS THE SHORTCUT FOR:</span>
+                <h2 id="quizQuestion" class="text-2xl sm:text-3xl font-extrabold text-indigo-300 mt-2 mb-6">Action Description</h2>
+
+                <div id="quizOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    <!-- Quiz buttons dynamically injected -->
+                </div>
+
+                <div id="quizFeedback" class="h-8 text-sm font-semibold flex items-center justify-center gap-2"></div>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-slate-800 pt-4">
+                <button id="nextQuizBtn" class="ml-auto py-2 px-5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all flex items-center gap-2">
+                    <span>Next Question</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Full dataset of 100 shortcuts with detailed context
+        const rawShortcuts = [
+            { id: 1, keys: "Ctrl + A", action: "Select all", cat: "basic", desc: "Highlights all text, elements, or objects in the active document, web page, or window." },
+            { id: 2, keys: "Ctrl + B", action: "Bold (text)", cat: "formatting", desc: "Applies or removes bold formatting from selected text in document editors." },
+            { id: 3, keys: "Ctrl + C", action: "Copy", cat: "basic", desc: "Copies selected text or object to the system clipboard without removing it." },
+            { id: 4, keys: "Ctrl + D", action: "Fill down", cat: "excel", desc: "In spreadsheet software like Excel, fills contents of the top cell into selected range below." },
+            { id: 5, keys: "Ctrl + E", action: "Center align", cat: "formatting", desc: "Centers the paragraph or line in Microsoft Word and text editors." },
+            { id: 6, keys: "Ctrl + F", action: "Find", cat: "basic", desc: "Opens the search/find bar in browsers, documents, and system file explorers." },
+            { id: 7, keys: "Ctrl + G", action: "Go to", cat: "excel", desc: "Opens the 'Go To' dialog box in Excel or Word to jump to specific pages/cells." },
+            { id: 8, keys: "Ctrl + H", action: "Replace", cat: "formatting", desc: "Opens Find and Replace dialog window in text editors and Microsoft Office." },
+            { id: 9, keys: "Ctrl + I", action: "Italic (text)", cat: "formatting", desc: "Toggles italicized styling on selected text." },
+            { id: 10, keys: "Ctrl + J", action: "Justify", cat: "formatting", desc: "Aligns text evenly along both left and right margins." },
+            { id: 11, keys: "Ctrl + K", action: "Insert hyperlink", cat: "formatting", desc: "Opens the hyperlink dialog box to insert a URL link into selected text." },
+            { id: 12, keys: "Ctrl + L", action: "Create table", cat: "excel", desc: "Quickly formats selected data range as a structured table in Excel." },
+            { id: 13, keys: "Ctrl + M", action: "Indent", cat: "formatting", desc: "Indents selected paragraph from the left margin in word processors." },
+            { id: 14, keys: "Ctrl + N", action: "New file", cat: "basic", desc: "Opens a new blank document, window, or tab depending on active application." },
+            { id: 15, keys: "Ctrl + O", action: "Open", cat: "basic", desc: "Launches the File Open dialog to select and load an existing file." },
+            { id: 16, keys: "Ctrl + P", action: "Print", cat: "basic", desc: "Opens the print configuration window for the current page or document." },
+            { id: 17, keys: "Ctrl + Q", action: "Quick print", cat: "basic", desc: "Sends current document directly to default printer without showing dialog." },
+            { id: 18, keys: "Ctrl + R", action: "Right align", cat: "formatting", desc: "Aligns selected text or paragraph to the right margin." },
+            { id: 19, keys: "Ctrl + S", action: "Save", cat: "basic", desc: "Saves current file changes immediately." },
+            { id: 20, keys: "Ctrl + T", action: "Create table", cat: "excel", desc: "Alternative shortcut to insert structured table in spreadsheets." },
+            { id: 21, keys: "Ctrl + U", action: "Underline", cat: "formatting", desc: "Applies or removes underline formatting on selected text." },
+            { id: 22, keys: "Ctrl + V", action: "Paste", cat: "basic", desc: "Inserts contents of clipboard at current cursor location." },
+            { id: 23, keys: "Ctrl + W", action: "Close window", cat: "browser", desc: "Closes current active window or browser tab." },
+            { id: 24, keys: "Ctrl + X", action: "Cut", cat: "basic", desc: "Removes selected text or object and stores it on clipboard." },
+            { id: 25, keys: "Ctrl + Y", action: "Redo", cat: "basic", desc: "Reapplies last action that was undone using Undo." },
+            { id: 26, keys: "Ctrl + Z", action: "Undo", cat: "basic", desc: "Reverses the previous action or edit." },
+            { id: 27, keys: "Ctrl + 1", action: "Format cells", cat: "excel", desc: "Launches the comprehensive Format Cells dialog box in Excel." },
+            { id: 28, keys: "Ctrl + 2", action: "Bold (toggle)", cat: "formatting", desc: "Alternative numerical toggle switch for bold formatting." },
+            { id: 29, keys: "Ctrl + 3", action: "Italic (toggle)", cat: "formatting", desc: "Alternative numerical toggle switch for italic text." },
+            { id: 30, keys: "Ctrl + 4", action: "Underline (toggle)", cat: "formatting", desc: "Alternative numerical toggle switch for underlined text." },
+            { id: 31, keys: "Ctrl + 5", action: "Strikethrough", cat: "formatting", desc: "Draws a line through middle of selected text in Excel/Word." },
+            { id: 32, keys: "Ctrl + 6", action: "Show/hide objects", cat: "excel", desc: "Toggles visibility of drawing objects or shapes in spreadsheets." },
+            { id: 33, keys: "Ctrl + 7", action: "Show/hide toolbar", cat: "excel", desc: "Displays or collapses toolbars or ribbon panels." },
+            { id: 34, keys: "Ctrl + 8", action: "Show/hide outline", cat: "excel", desc: "Displays or hides outline symbols in grouped Excel sheets." },
+            { id: 35, keys: "Ctrl + 9", action: "Hide row", cat: "excel", desc: "Hides all currently selected rows in Excel spreadsheet." },
+            { id: 36, keys: "Ctrl + 0", action: "Hide column", cat: "excel", desc: "Hides all currently selected columns in Excel." },
+            { id: 37, keys: "Ctrl + Tab", action: "Next tab", cat: "browser", desc: "Cycles forward to the next tab in web browsers and tabbed windows." },
+            { id: 38, keys: "Ctrl + Shift + Tab", action: "Previous tab", cat: "browser", desc: "Cycles backward to the previous tab in browsers." },
+            { id: 39, keys: "Ctrl + Page Up", action: "Previous page", cat: "excel", desc: "Switches to previous worksheet tab in Excel or page in documents." },
+            { id: 40, keys: "Ctrl + Page Down", action: "Next page", cat: "excel", desc: "Switches to next worksheet tab in Excel or page in documents." },
+            { id: 41, keys: "Ctrl + Plus (+)", action: "Zoom in", cat: "browser", desc: "Increases screen or document zoom level." },
+            { id: 42, keys: "Ctrl + Minus (-)", action: "Zoom out", cat: "browser", desc: "Decreases screen or document zoom level." },
+            { id: 43, keys: "Ctrl + F5", action: "Restore window", cat: "browser", desc: "Restores or force refreshes active window/tab." },
+            { id: 44, keys: "Ctrl + F10", action: "Maximize window", cat: "browser", desc: "Toggles window between maximized and restored size." },
+            { id: 45, keys: "Ctrl + Shift + N", action: "New folder", cat: "basic", desc: "Creates a new folder instantly in File Explorer or incognito window in browsers." },
+            { id: 46, keys: "Ctrl + Shift + S", action: "Save as", cat: "basic", desc: "Opens 'Save As' dialog to save file with a new name or location." },
+            { id: 47, keys: "Ctrl + Shift + P", action: "Print preview", cat: "basic", desc: "Displays print preview layout prior to physical printing." },
+            { id: 48, keys: "Ctrl + Shift + F", action: "Change font", cat: "formatting", desc: "Opens Font formatting dialog to customize font family and size." },
+            { id: 49, keys: "Ctrl + Shift + G", action: "Go to special", cat: "excel", desc: "Launches 'Go To Special' dialog box in Excel for selecting specific formulas/blanks." },
+            { id: 50, keys: "Ctrl + Shift + K", action: "Insert hyperlink", cat: "formatting", desc: "Alternative shortcut for creating text hyperlinks." },
+            { id: 51, keys: "Ctrl + Shift + L", action: "Remove hyperlink", cat: "excel", desc: "Quickly enables or disables auto-filter arrows in Excel headers." },
+            { id: 52, keys: "Ctrl + Shift + M", action: "Outdent", cat: "formatting", desc: "Decreases left paragraph indentation level." },
+            { id: 53, keys: "Ctrl + Shift + +", action: "Insert row/column", cat: "excel", desc: "Opens dialog to insert new blank cells, rows, or columns in Excel." },
+            { id: 54, keys: "Ctrl + Shift + -", action: "Delete row/column", cat: "excel", desc: "Deletes selected cells, rows, or columns in spreadsheets." },
+            { id: 55, keys: "Ctrl + Shift + $", action: "Currency format", cat: "excel", desc: "Applies Currency number formatting ($0.00) to selected cells." },
+            { id: 56, keys: "Ctrl + Shift + %", action: "Percentage format", cat: "excel", desc: "Applies Percentage number format with no decimal places." },
+            { id: 57, keys: "Ctrl + Shift + #", action: "Date format", cat: "excel", desc: "Applies Date format (Day-Month-Year) to cell values." },
+            { id: 58, keys: "Ctrl + Shift + @", action: "Time format", cat: "excel", desc: "Applies Time format with hour, minute, and AM/PM." },
+            { id: 59, keys: "Ctrl + Shift + !", action: "Number format", cat: "excel", desc: "Applies standard Number format with two decimal places and thousands separator." },
+            { id: 60, keys: "Ctrl + Shift + ^", action: "Scientific format", cat: "excel", desc: "Applies exponential Scientific number format to selected cells." },
+            { id: 61, keys: "Ctrl + Shift + ~", action: "General format", cat: "excel", desc: "Resets cell formatting back to default General format." },
+            { id: 62, keys: "Ctrl + Shift + &", action: "Show formula", cat: "excel", desc: "Applies outline border to selected cells or toggles formula view." },
+            { id: 63, keys: "Ctrl + Shift + *", action: "Add border", cat: "excel", desc: "Selects current data region surrounding active cell." },
+            { id: 64, keys: "Ctrl + Shift + _", action: "Remove border", cat: "excel", desc: "Removes all outline borders from selected range of cells." },
+            { id: 65, keys: "Ctrl + Shift + (", action: "Group", cat: "excel", desc: "Unhides any hidden rows within selection." },
+            { id: 66, keys: "Ctrl + Shift + )", action: "Ungroup", cat: "excel", desc: "Unhides any hidden columns within selection." },
+            { id: 67, keys: "Ctrl + Shift + 8", action: "Toggle gridlines", cat: "excel", desc: "Toggles worksheet gridlines visibility." },
+            { id: 68, keys: "Ctrl + Shift + 9", action: "Hide formula bar", cat: "excel", desc: "Unhides rows or toggles formula bar display." },
+            { id: 69, keys: "Ctrl + Shift + 0", action: "Show formula bar", cat: "excel", desc: "Unhides columns or toggles formula bar visibility." },
+            { id: 70, keys: "Ctrl + Alt + Del", action: "Security options", cat: "browser", desc: "Opens Windows system security screen (Lock, Switch user, Task Manager)." },
+            { id: 71, keys: "Ctrl + Alt + Tab", action: "Switch apps", cat: "browser", desc: "Opens persistent switcher grid of all active running application windows." },
+            { id: 72, keys: "Ctrl + Alt + Esc", action: "Open task manager", cat: "browser", desc: "Directly opens Windows Task Manager." },
+            { id: 73, keys: "Ctrl + Alt + F4", action: "Close app", cat: "browser", desc: "Force terminates active application program." },
+            { id: 74, keys: "Ctrl + Alt + Home", action: "Go to start", cat: "browser", desc: "Navigates to top/start of document or web page." },
+            { id: 75, keys: "Ctrl + Alt + End", action: "Go to end", cat: "browser", desc: "Navigates to bottom/end of document or web page." },
+            { id: 76, keys: "Ctrl + Alt + Enter", action: "Full screen", cat: "browser", desc: "Toggles full screen presentation or media player mode." },
+            { id: 77, keys: "Ctrl + Alt + Space", action: "Input method", cat: "browser", desc: "Switches keyboard input layout or language." },
+            { id: 78, keys: "Ctrl + Alt + Shift", action: "Toggle input language", cat: "browser", desc: "Switches primary system language profiles." },
+            { id: 79, keys: "Ctrl + Alt + B", action: "Bold (in some apps)", cat: "formatting", desc: "Alternative rich text formatting shortcut for custom software." },
+            { id: 80, keys: "Ctrl + Alt + I", action: "Italic (in some apps)", cat: "formatting", desc: "Alternative italicization command in developer or graphics software." },
+            { id: 81, keys: "Ctrl + Alt + U", action: "Underline (in some apps)", cat: "formatting", desc: "Alternative underline command in specialized text editors." },
+            { id: 82, keys: "Ctrl + Alt + C", action: "Copy (in some apps)", cat: "basic", desc: "Copies plain unformatted text or formatting styles in word processors." },
+            { id: 83, keys: "Ctrl + Alt + V", action: "Paste (in some apps)", cat: "basic", desc: "Launches 'Paste Special' dialog box (values only, formatting, etc.)." },
+            { id: 84, keys: "Ctrl + Alt + S", action: "Save (in some apps)", cat: "basic", desc: "Splits document window or saves copy in design suites." },
+            { id: 85, keys: "Ctrl + Alt + P", action: "Print (in some apps)", cat: "basic", desc: "Alternative quick print setup command." },
+            { id: 86, keys: "Ctrl + Alt + R", action: "Refresh (in some apps)", cat: "browser", desc: "Hard refreshes canvas or app state." },
+            { id: 87, keys: "Ctrl + Alt + L", action: "Lock (in some apps)", cat: "browser", desc: "Locks app screen or launches magnifier in Windows." },
+            { id: 88, keys: "Ctrl + Alt + D", action: "Desktop (show desktop)", cat: "browser", desc: "Minimizes windows to reveal computer desktop." },
+            { id: 89, keys: "Ctrl + Alt + T", action: "New tab (in browsers)", cat: "browser", desc: "Opens new browser window/tab or terminal console." },
+            { id: 90, keys: "Ctrl + Alt + W", action: "Close tab (in browsers)", cat: "browser", desc: "Closes current view or document window." },
+            { id: 91, keys: "Ctrl + Alt + F", action: "Find (in browsers)", cat: "basic", desc: "Inserts footnote in Word or deep search in developer tools." },
+            { id: 92, keys: "Ctrl + Alt + Z", action: "Undo (in some apps)", cat: "basic", desc: "Global undo in Adobe Creative Suite and design tools." },
+            { id: 93, keys: "Ctrl + Alt + X", action: "Cut (in some apps)", cat: "basic", desc: "Alternative cut command in code editors." },
+            { id: 94, keys: "Ctrl + Alt + G", action: "Go to (in some apps)", cat: "basic", desc: "Jumps to specific line number in code editors." },
+            { id: 95, keys: "Ctrl + Alt + H", action: "History (in browsers)", cat: "browser", desc: "Launches browser history log tab." },
+            { id: 96, keys: "Ctrl + Alt + J", action: "Downloads (in browsers)", cat: "browser", desc: "Opens browser downloads manager screen." },
+            { id: 97, keys: "Ctrl + Alt + K", action: "Bookmark (in browsers)", cat: "browser", desc: "Bookmarks current page in custom browsers." },
+            { id: 98, keys: "Ctrl + Alt + N", action: "New window (in browsers)", cat: "browser", desc: "Opens new incognito or private browsing window." },
+            { id: 99, keys: "Ctrl + Alt + Q", action: "Quit (in browsers)", cat: "browser", desc: "Exits active application immediately." },
+            { id: 100, keys: "Ctrl + Alt + U", action: "Update (in some apps)", cat: "browser", desc: "Triggers app updates or source re-indexing." }
+        ];
+
+        let bookmarks = JSON.parse(localStorage.getItem('shortcut_bookmarks') || '[]');
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let activeModalItem = null;
+
+        // Quiz State
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizQuestions = [];
+
+        // DOM Hooks
+        const shortcutsGrid = document.getElementById('shortcutsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearch');
+        const noResults = document.getElementById('noResults');
+        const favCountSpan = document.getElementById('favCount');
+        const countAllSpan = document.getElementById('countAll');
+
+        // Modal Hooks
+        const detailModal = document.getElementById('detailModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalNum = document.getElementById('modalNum');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalKeys = document.getElementById('modalKeys');
+        const modalCopyBtn = document.getElementById('modalCopyBtn');
+        const modalFavBtn = document.getElementById('modalFavBtn');
+
+        // Practice Mode Hooks
+        const practiceModeBtn = document.getElementById('practiceModeBtn');
+        const practiceModal = document.getElementById('practiceModal');
+        const closePractice = document.getElementById('closePractice');
+        const quizQuestion = document.getElementById('quizQuestion');
+        const quizOptions = document.getElementById('quizOptions');
+        const quizScoreSpan = document.getElementById('quizScore');
+        const quizTotalSpan = document.getElementById('quizTotal');
+        const quizFeedback = document.getElementById('quizFeedback');
+        const nextQuizBtn = document.getElementById('nextQuizBtn');
+
+        function renderKbdKeys(keysString) {
+            return keysString.split('+').map(k => `<kbd>${k.trim()}</kbd>`).join('<span class="text-slate-500 font-bold mx-0.5">+</span>');
+        }
+
+        function getCategoryBadge(cat) {
+            switch(cat) {
+                case 'basic': return `<span class="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Basic</span>`;
+                case 'formatting': return `<span class="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Formatting</span>`;
+                case 'excel': return `<span class="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Excel</span>`;
+                default: return `<span class="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Browser/Sys</span>`;
+            }
+        }
+
+        function renderGrid() {
+            shortcutsGrid.innerHTML = '';
+            
+            const filtered = rawShortcuts.filter(item => {
+                const matchesCat = (currentCategory === 'all') || 
+                                   (currentCategory === 'favorites' ? bookmarks.includes(item.id) : item.cat === currentCategory);
+                
+                const q = searchQuery.toLowerCase();
+                const matchesSearch = item.keys.toLowerCase().includes(q) || 
+                                      item.action.toLowerCase().includes(q) || 
+                                      item.desc.toLowerCase().includes(q);
+
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                filtered.forEach(item => {
+                    const isBookmarked = bookmarks.includes(item.id);
+                    const card = document.createElement('div');
+                    card.className = 'glass-card rounded-xl p-4 transition-all duration-200 cursor-pointer flex flex-col justify-between group relative';
+                    card.onclick = () => openModal(item);
+
+                    card.innerHTML = `
+                        <div class="flex items-start justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="mono text-xs font-bold text-slate-500">#${item.id}</span>
+                                ${getCategoryBadge(item.cat)}
+                            </div>
+                            <button onclick="event.stopPropagation(); toggleBookmark(${item.id})" class="text-slate-500 hover:text-amber-400 transition-colors p-1">
+                                <i class="${isBookmarked ? 'fa-solid text-amber-400' : 'fa-regular'} fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="mb-4">
+                            <h3 class="font-bold text-white text-base group-hover:text-indigo-300 transition-colors">${item.action}</h3>
+                            <p class="text-slate-400 text-xs line-clamp-2 mt-1">${item.desc}</p>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-800/80">
+                            <div class="flex flex-wrap items-center gap-1">
+                                ${renderKbdKeys(item.keys)}
+                            </div>
+                            <button onclick="event.stopPropagation(); copyKeys('${item.keys}', this)" class="text-xs px-2.5 py-1 rounded-md bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition-all flex items-center gap-1.5 border border-slate-700">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    `;
+                    shortcutsGrid.appendChild(card);
+                });
+            }
+
+            // Update Counts
+            favCountSpan.textContent = `${bookmarks.length} Bookmarks`;
+            countAllSpan.textContent = rawShortcuts.length;
+        }
+
+        function toggleBookmark(id) {
+            if (bookmarks.includes(id)) {
+                bookmarks = bookmarks.filter(bId => bId !== id);
+            } else {
+                bookmarks.push(id);
+            }
+            localStorage.setItem('shortcut_bookmarks', JSON.stringify(bookmarks));
+            renderGrid();
+            if (activeModalItem && activeModalItem.id === id) {
+                updateModalFavBtn(id);
+            }
+        }
+
+        function copyKeys(keysText, btnEl) {
+            // Document execCommand fallback for iFrame compatibility
+            const tempInput = document.createElement('input');
+            tempInput.value = keysText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Button UI Feedback
+            const originalHTML = btnEl.innerHTML;
+            btnEl.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i><span>Copied!</span>`;
+            btnEl.classList.add('bg-emerald-600/30', 'border-emerald-500');
+            setTimeout(() => {
+                btnEl.innerHTML = originalHTML;
+                btnEl.classList.remove('bg-emerald-600/30', 'border-emerald-500');
+            }, 1500);
+        }
+
+        function openModal(item) {
+            activeModalItem = item;
+            modalNum.textContent = `#${item.id}`;
+            modalCategory.textContent = item.cat.toUpperCase();
+            modalTitle.textContent = item.action;
+            modalDesc.textContent = item.desc;
+            modalKeys.innerHTML = renderKbdKeys(item.keys);
+
+            updateModalFavBtn(item.id);
+
+            modalCopyBtn.onclick = () => copyKeys(item.keys, modalCopyBtn);
+            modalFavBtn.onclick = () => toggleBookmark(item.id);
+
+            detailModal.classList.remove('hidden');
+        }
+
+        function updateModalFavBtn(id) {
+            const isBookmarked = bookmarks.includes(id);
+            modalFavBtn.innerHTML = `
+                <i class="${isBookmarked ? 'fa-solid text-amber-400' : 'fa-regular'} fa-star"></i>
+                <span>${isBookmarked ? 'Bookmarked' : 'Bookmark'}</span>
+            `;
+        }
+
+        closeModal.onclick = () => detailModal.classList.add('hidden');
+        detailModal.onclick = (e) => { if (e.target === detailModal) detailModal.classList.add('hidden'); };
+
+        function startPracticeMode() {
+            // Shuffle and pick 10 random questions
+            quizQuestions = [...rawShortcuts].sort(() => 0.5 - Math.random()).slice(0, 10);
+            quizIndex = 0;
+            quizScore = 0;
+            quizScoreSpan.textContent = '0';
+            quizTotalSpan.textContent = quizQuestions.length;
+            
+            practiceModal.classList.remove('hidden');
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            quizFeedback.textContent = '';
+            nextQuizBtn.classList.add('opacity-50', 'pointer-events-none');
+
+            const current = quizQuestions[quizIndex];
+            quizQuestion.textContent = current.action;
+
+            // Generate 4 options (1 correct, 3 distractors)
+            let distractors = rawShortcuts.filter(s => s.id !== current.id).sort(() => 0.5 - Math.random()).slice(0, 3);
+            let options = [current, ...distractors].sort(() => 0.5 - Math.random());
+
+            quizOptions.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full p-3 rounded-xl bg-slate-800/90 border border-slate-700 hover:border-indigo-500 text-slate-200 font-semibold text-sm transition-all flex items-center justify-center gap-2';
+                btn.innerHTML = renderKbdKeys(opt.keys);
+                btn.onclick = () => checkQuizAnswer(opt.id === current.id, btn, current.keys);
+                quizOptions.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(isCorrect, selectedBtn, correctKey) {
+            // Disable all option buttons
+            const buttons = quizOptions.querySelectorAll('button');
+            buttons.forEach(b => b.classList.add('pointer-events-none'));
+
+            if (isCorrect) {
+                quizScore++;
+                quizScoreSpan.textContent = quizScore;
+                selectedBtn.classList.add('bg-emerald-600/30', 'border-emerald-500');
+                quizFeedback.innerHTML = `<span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i> Correct! Well done.</span>`;
+            } else {
+                selectedBtn.classList.add('bg-rose-600/30', 'border-rose-500');
+                quizFeedback.innerHTML = `<span class="text-rose-400"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Right key: <strong class="text-white">${correctKey}</strong></span>`;
+            }
+
+            nextQuizBtn.classList.remove('opacity-50', 'pointer-events-none');
+        }
+
+        nextQuizBtn.onclick = () => {
+            quizIndex++;
+            if (quizIndex < quizQuestions.length) {
+                loadQuizQuestion();
+            } else {
+                // Quiz completed
+                quizQuestion.textContent = "Quiz Completed!";
+                quizOptions.innerHTML = `
+                    <div class="col-span-2 text-center py-4">
+                        <div class="text-4xl font-extrabold text-indigo-400 mb-2">${quizScore} / ${quizQuestions.length}</div>
+                        <p class="text-slate-400 text-sm">Great effort! Keep practicing to memorize all 100 shortcuts.</p>
+                    </div>
+                `;
+                nextQuizBtn.classList.add('hidden');
+                quizFeedback.textContent = '';
+            }
+        };
+
+        practiceModeBtn.onclick = startPracticeMode;
+        closePractice.onclick = () => practiceModal.classList.add('hidden');
+
+        searchInput.oninput = (e) => {
+            searchQuery = e.target.value;
+            clearSearchBtn.classList.toggle('hidden', searchQuery === '');
+            renderGrid();
+        };
+
+        clearSearchBtn.onclick = () => {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            renderGrid();
+        };
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.cat;
+                renderGrid();
+            };
+        });
+
+        document.getElementById('favoritesToggleBtn').onclick = () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            currentCategory = 'favorites';
+            renderGrid();
+        };
+
+        // Initial Initialization
+        renderGrid();
+    </script>
+</body>
+</html>
